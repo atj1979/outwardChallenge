@@ -6,6 +6,7 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var mathRouter = require('./routes/math');
+var gameRouter = require('./routes/game');
 
 var requestCounter = 0;
 
@@ -28,6 +29,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/math', mathRouter);
+app.use('/game', gameRouter);
 app.use('/json', ()=>{});
 
 // catch 404 and forward to error handler

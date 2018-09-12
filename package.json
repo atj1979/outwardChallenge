@@ -4,15 +4,21 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "debug": "npm install && DEBUG=outwardchallenge:* nodemon start"
+    "nodeMon": "nodemon start --config nodemon.json ",
+    "debug": "npm install && DEBUG=outwardchallenge:* && npm run nodeMon  ",
+    "build": "browserify ./public/javascripts/gameEngine.js > ./public/bundle/bundle.js"
   },
   "dependencies": {
+    "browserify": "^16.2.2",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "ejs": "~2.5.7",
     "express": "~4.16.0",
     "http-errors": "~1.6.2",
-    "morgan": "~1.9.0"
+    "morgan": "~1.9.0",
+    "three": "^0.96.0",
+    "three-gltf-loader": "^1.96.0",
+    "three-orbit-controls": "^82.1.0"
   },
   "devDependencies": {
     "nodemon": "^1.18.4"
