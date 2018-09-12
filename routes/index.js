@@ -3,7 +3,9 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express', visitCounter: res.get("visitCounter") });
+  res.render('index', { title: 'Express', requestCounter: res.get("requestCounter") });
 });
+
+
 
 module.exports = router;

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1>Do some simple Maths!</h1>
+    <p>This has responded to <%= requestCounter %> requests</p>
+    <table>
+        <tr>
+            <td>Number</td>
+            <td></td>
+            <td>Number</td>
+            <td>Output</td>
+        </tr>
+        <tr>
+            <td>
+                <input id="first-number" type="number" value="5.123" />
+            </td>
+            <td> 
+                <select id="operator">
+                    <option value="+">+</option>
+                    <option value="-">-</option>
+                    <option value="*">*</option>
+                    <option value="/">/</option>
+                </select>
+            </td>
+            <td>
+                <input id="second-number" type="number" value="9.123"/>
+            </td>
+            <td>
+                <span id="output"></span>
+            </td>
+        </tr>
+    </table>
+    <script>
+        (function(){
+            var firstInput = document.querySelector("#first-number");
+            var secondInput = document.querySelector("#second-number");
+            var operatorInput = document.querySelector("#operator");
+            var output = document.querySelector("#output");
+            var operations = {
+                "+": (val1, val2) => val1 + val2,
+                "-": (val1, val2) => val1 - val2,
+                "*": (val1, val2) => val1 * val2,
+                "/": (val1, val2) => val2 !== 0 ? val1 / val2 : "undefined"
+            };
+
+            document.addEventListener("change", updateOutput);
+
+            function updateOutput(){
+                var firstNumber = parseFloat(firstInput.value);
+                var secondNumber = parseFloat(secondInput.value);
+                var operator = operatorInput[operatorInput.selectedIndex].value;
+
+                if(isNaN(firstNumber) || 
+                    isNaN(secondNumber) || 
+                    operator === "") 
+                {
+                    return output.innerText = "";
+                }
+
+                output.innerText = operations[operator](firstNumber, secondNumber);
+            }
+            updateOutput();
+        })();
+    </script>
+  </body>
+</html>

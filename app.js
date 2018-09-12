@@ -5,9 +5,9 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var mathRouter = require('./routes/math');
 
-var visitCounter = 0;
+var requestCounter = 0;
 
 var app = express();
 
@@ -16,7 +16,8 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 app.use((req, res, next) => {
-  visitCounter++;
+  requestCounter++;
+  res.set("requestCounter", requestCounter);
   next();
 });
 app.use(logger('dev'));
@@ -25,12 +26,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', (req, res, next)=> {
-
-  res.set("visitCounter", visitCounter);
-  indexRouter(req, res, next);
-});
-app.use('/users', usersRouter);
+app.use('/', indexRouter);
+app.use('/math', mathRouter);
 app.use('/json', ()=>{});
 
 // catch 404 and forward to error handler
