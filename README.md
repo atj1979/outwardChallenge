@@ -33,3 +33,8 @@ function hoisted(){ return 4; }
 ```
 
 
+A part about Javascript That I dislike :
+
+The part about javascript that I like/dislike is the typing system.  The lack optional typing can make it difficult to 
+discern what is what in large complicated projects.  Luckily - typescript has really taken to combat this issue off but users typically like implement the typing of everything  (via code linting).  This typing of everything can be annoying especially when typing is not absolutely necessary.
+
